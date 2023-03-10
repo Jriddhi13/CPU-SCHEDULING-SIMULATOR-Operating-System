@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="top">
+        <h1 id="heading" align="center" >Process Scheduling</h1>   </div>
+    <div class="left">
+        <div class="Input" id="Input">
+            <br>
+            <h3 class="text">Enter Number of Process</h3>
+            <input type="text" id="prno" class="prno" value="4">
+            <h3 class="text">Enter Arrival Time of Process</h3>
+            <input type="text" id="arrival" class="arrival" value="0 1 2 4">
+            <h3 class="text">Enter Burst Time of Process</h3>
+            <input type="text" id="burst" class="burst" value="5 4 2 1">
+            <h3 class="text">Select Schedule</h3>
+            <select id="choose" class="choose"  onchange="jsFunction();">
+                <optgroup label="Non-Preemptive">
+                    <option value="none" selected disabled >None</option>  
+                <option value="fcfs" >FCFS</option>
+                </optgroup>
+                <optgroup label="Preemptive">
+                <option value="srtf">SRTF</option>
+                <option value="pp">Priority based</option>
+                <option value="rr">Round Robin</option>
+                </optgroup>
+            </select>
+            <h3 class="text" id="prpr">Enter Priority</h3>
+            <input type="text" id="priority" class="priority" value="2 2 3 4">
+            <br>
+            <br>
+        </div>
+        <div id="btn">
+            <input type="button" class="button" value="CALCULATE" onclick="calculate()"></button>
+            <input type="button" class="button" value="COMPARE" onclick="compare()"></button>
+        </div>
+    </div>
+    <div class="right">
+        <div class="tab" id="tab">
+        </div>
+        <div id="blank">
+        <div id="display">
+                <br>
+                <P>The process scheduling is the activity of the process manager that handles the removal of the running process from the CPU and the selection of another process on the basis of a particular strategy.<br>Process scheduling is an essential part of a Multiprogramming operating systems. Such operating systems allow more than one process to be loaded into the executable memory at a time and the loaded process shares the CPU using time multiplexing.</P>
+                <br>
+                <h4>Types of Scheduling</h4>
+                <ul>
+                    <li>First Come First Serve</li>
+                    <li>Shortest Remaining Time First</li>
+                    <li>Preemptive Priority</li>
+                    <li>Round Robin</li>
+                </ul>
+                <br>    
+        </div>
+        <div id="fcfs">
+            <br>
+            <P>First come first serve (FCFS) scheduling algorithm simply schedules the jobs according to their arrival time. The job which comes first in the ready queue will get the CPU first. The lesser the arrival time of the job, the sooner will the job get the CPU. FCFS scheduling may cause the problem of starvation if the burst time of the first process is the longest among all the jobs.</P>
+            <br>
+            <h4>Advantages</h4>
+            <ul>
+                <li>Simple</li>
+                <li>Easy</li>
+            </ul>
+            <br>
+            <h4>DisAdvantages</h4>
+            <ul>
+                <li>The scheduling method is non preemptive, the process will run to the completion.</li>
+                <li>Due to the non-preemptive nature of the algorithm, the problem of starvation may occur.</li>
+                <li>Not optimal Average Waiting Time.</li>
+            </ul>
+        </div>
+        <div id="pp">
+            <br>
+            <P>It is a priority scheduling algorithm in which the CPU is preempted when a new process arrives i.e it will start executing the new process if the newly arrived process is of higher priority than the currently running process.So, the currently running process is stopped, and the newly arrived process is executed.</P>
+            <br>
+            <h4>Advantages</h4>
+            <ul>
+                <li>Processes having higher priority need not wait for a longer time due to other processes running.</li>
+                <li> The relative importance of processes can be defined.</li>
+                <li> The applications in which the requirements of time and resources fluctuate are useful.</li>
+            </ul>
+            <br>
+            <h4>DisAdvantages</h4>
+            <ul>
+                <li>One of the major problems with this algorithm is indefinite blocking or starvation.</li>
+                <li>A process that is ready to run but waiting for the CPU can be considered blocked.</li>
+                <li>All the low priority tasks may get lost when the system crashes eventually.</li>
+            </ul>
+        </div>
+        <div id="rr">
+            <br>
+            <P>Round Robin (RR) Scheduling Algorithm is design for the time sharing system. This algorithm is the preemptive scheduling algorithm. <br>Round-robin scheduling allocates each task an equal share of the CPU time. In its simplest form, tasks are in a circular queue and when a task’s allocated CPU time expires, the task is put to the end of the queue and the new task is taken from the front of the queue.
+            </P>
+            <br>
+            <h4>Advantages</h4>
+            <ul>
+                <li>All the jobs get a fair allocation of CPU.</li>
+                <li>It deals with all processes without any priority.</li>
+                <li>It gives the best performance in terms of average response time.</li>
+            </ul>
+            <br>
+            <h4>DisAdvantages</h4>
+            <ul>
+                <li>Lower quantum results in higher context switching overhead in the system.</li>
+                <li>Its performance heavily depends on the time quantum.</li>
+                <li>Priorities cannot be set for the processes.</li>
+            </ul>
+        </div>
+        <div id="srtf">
+            <br>
+            <P>Shortest Remaining Time First (SRTF) is the preemptive version of Shortest Job Next (SJN) algorithm, where the processor is allocated to the job closest to completion. </P>
+            <br>
+            <h4>Advantages</h4>
+            <ul>
+                <li>Short processes are handled very quickly. </li>
+                <li>When a new process is added the algorithm only needs to compare the currently executing process with the new process, ignoring all other processes currently waiting to execute.
+                </li>
+            </ul>
+            <br>
+            <h4>DisAdvantages</h4>
+            <ul>
+                <li>he context switch is done a lot more times in SRTF than in SJN, and consumes CPU’s valuable time for processing. This adds up to it’s processing time and diminishes it’s advantage of fast processing.</li>
+            </ul>
+        </div>
+        </div>
+        <div class="tab2" id="tab2">Hello</div>
+        <div class="tab1" id="tab1">Hello</div>
+        <div id="cmpr" class="container3">
+            <div id="cmpr-head"></div>
+            <div id="cmpr_area"></div>
+          </div>
+        <!-- <div class="tab3" id="tab3">Hello</div> -->
+        
+
+    </div>
+</body>
+</html>
